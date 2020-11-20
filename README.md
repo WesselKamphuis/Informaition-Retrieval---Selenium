@@ -1,2 +1,2 @@
-# Informaition-Retrieval---Selenium
+# Information-Retrieval---Selenium
 Project IR
