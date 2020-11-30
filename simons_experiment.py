@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 import time
 import coordinates_handler as ch
 import json
+import result_saver
 
 
 def load_selenium():
@@ -22,21 +23,25 @@ def browse(driver):
     driver.set_window_size(668, 680)
     driver.find_element(By.NAME, "q").send_keys("restaurant near me")
     driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
-    time.sleep(2)
+    time.sleep(1)
 
 
 def main():
     driver = load_selenium()
     book = ch.load_coordinates('Coordinates.xlsx')
     tables = ch.book_to_table(book)
-    vvd = tables.get('VVD')
-    vvd_coordinates = vvd['aggregate']
-    print(vvd_coordinates)
-    for m in vvd_coordinates:
-        coordinates = json.loads(m)
-        cmd_name = "Emulation.setGeolocationOverride"
-        driver.execute_cdp_cmd(cmd_name, coordinates)
-        browse(driver)
+    for party_name in tables.keys():
+        print("p:", party_name)
+        party = tables.get(party_name)
+        for index in party.index:
+            municipality = party['Municipality'][index]
+            coordinates = json.loads(party['aggregate'][index])
+            name = party_name + ' - ' + municipality + '.txt'
+            folder_path = 'Query_Results/Europa/'
+            cmd_name = "Emulation.setGeolocationOverride"
+            driver.execute_cdp_cmd(cmd_name, coordinates)
+            browse(driver)
+            result_saver.result_saver(driver, folder_path, name)
     driver.close()
 
 
