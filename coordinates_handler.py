@@ -12,7 +12,6 @@ def book_to_table(book):
     tables = {}
     for name in names:
         tables[name] = pd.read_excel(book, sheet_name=name)
-    print("the table of the pvv: \n", tables.get('PVV'))
     return tables
 
 
