@@ -1,7 +1,9 @@
-def result_saver(driver):
-    f = open('search_results.txt',"a")
-    links = driver.find_elements_by_css_selector(".r a")
+def result_saver(driver, name):
+    f = open(name,"a")
+    links = driver.find_elements_by_css_selector(".rc a")
+    print("all links: ", links)
     for link in links:
-      a = link.get_attribute('href')
-      f.write( a + '\n')
+        print("the link: ", link)
+        a = link.get_attribute('href')
+        f.write( a + '\n')
     f.close()
