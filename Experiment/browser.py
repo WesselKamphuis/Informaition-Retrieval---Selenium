@@ -69,9 +69,12 @@ def browser(query, directory):
             driver.close()
 
 
+# Takes the driver as input and saves the results from the page
 def result_saver(driver, folder_path, name):
     f = open((folder_path + name), "a")
     links = driver.find_elements_by_css_selector(".rc a")
+
+    # Selecting all the links also returns unwanted results, shown below, these are filtereda
     spam1 = '://webcache.googleusercontent.com'
     spam2 = '://www.google.com'
     spam3 = '://translate.google.com'
