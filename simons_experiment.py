@@ -28,12 +28,13 @@ def browse(driver):
     driver.get("https://www.google.com/")
     # driver.add_cookie({"name": "foo", "value": "bar"})
     # driver.implicitly_wait(20)
-    driver.delete_all_cookies()
+    # driver.delete_all_cookies()
     # time.sleep(5)
     # driver.find_element_by_id("introAgreeButton").click()
     driver.find_element(By.NAME, "q").send_keys("restaurant near me")
     driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
     time.sleep(1)
+    driver.delete_all_cookies()
 
 
 def main():
@@ -46,6 +47,7 @@ def main():
         for index in party.index:
             municipality = party['Municipality'][index]
             coordinates = json.loads(party['aggregate'][index])
+            print(coordinates)
             name = party_name + ' - ' + municipality + '.txt'
             folder_path = 'Query_Results/Europa/'
             cmd_name = "Emulation.setGeolocationOverride"
