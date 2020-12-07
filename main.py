@@ -3,6 +3,7 @@ from Experiment import browser
 
 def main():
     dict_of_queries = {
+        'Restaurant_Near_Me': 'restaurant near me',
         'Belastingen': 'belastingen',
         'Defensie': 'defensie',
         'Europese_Unie': 'europese unie',
@@ -12,7 +13,10 @@ def main():
         'Zorg': 'zorg'}
 
     for key in dict_of_queries.keys():
-        query = 'partijbeleid ' + dict_of_queries.get(key)
+        if key == 'Restaurant_Near_Me':
+            query = 'restaurant near me'
+        else:
+            query = 'partijbeleid ' + dict_of_queries.get(key)
         browser.browser(query, key)
 
 
