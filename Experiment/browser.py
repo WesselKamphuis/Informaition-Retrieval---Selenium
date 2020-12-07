@@ -51,6 +51,7 @@ def browser(query, directory):
         # Every row in the sheet corresponds to: [Municipality], [Percentage], [latitude], [longitude], [aggregate]
         for index in party.index:
             driver = load_selenium()
+            driver.delete_all_cookies()
             municipality = party['Municipality'][index]
             coordinates = json.loads(party['aggregate'][index])
 
