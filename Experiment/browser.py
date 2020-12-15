@@ -65,7 +65,7 @@ def browser(query, directory):
             # A name is created, stating the name of the party and the municipality
             # the results are then saved using the
             name = party_name + ' - ' + municipality + '.txt'
-            folder_path = 'Query_Results/' + directory + '/'
+            folder_path = 'Query_Results_Simon_v2/' + directory + '/'
             result_saver(driver, folder_path, name)
             driver.close()
 
