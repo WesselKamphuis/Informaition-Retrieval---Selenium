@@ -1,7 +1,11 @@
 from Experiment import browser
 from Validation import cohens_kappa
+import time
+
 
 def main():
+    start = time.time()
+    print('the start time: ', start)
     dict_of_queries = {
         'Restaurant_Near_Me': 'restaurant near me',
         'Pensioenen': 'pensioenen',
@@ -24,7 +28,10 @@ def main():
 
     path1 = 'Query_Results_Simon_v2/'
     path2 = 'Query_Results_Wessel_v2/Query_Results_Wessel_v2/'
-
-
+    stop = time.time()
+    print('the stop time: ', stop)
+    minutes = (stop - start) / 60
+    print('the total runtime in seconds is: ', stop - start)
+    print('total time in minutes: ', minutes)
 if __name__ == '__main__':
     main()
