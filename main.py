@@ -1,5 +1,5 @@
 from Experiment import browser
-
+from Validation import cohens_kappa
 
 def main():
     dict_of_queries = {
@@ -22,6 +22,9 @@ def main():
             query = 'standpunten ' + dict_of_queries.get(key)
         browser.browser(query, key)
 
+    path1 = 'Query_Results_Simon_v2/'
+    path2 = 'Query_Results_Wessel_v2/Query_Results_Wessel_v2/'
+    cohens_kappa(path1, path2)
 
 if __name__ == '__main__':
     main()
