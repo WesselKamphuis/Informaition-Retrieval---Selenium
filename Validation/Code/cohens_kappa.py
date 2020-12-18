@@ -25,8 +25,6 @@ def cohens_kappa(path1, path2):
                 try:
                     ch_dict[sub_folder][results1[i]] = metrics.cohen_kappa_score(l1, l2)
                 except ValueError:
-                    print("\n An error occured. The files for: ", results1[i], " in the theme: ", sub_folder, ", do "
-                                                                                                              "NOT "
-                                                                                                              "match. "
-                                                                                                              "\n ")
+                    print("\n Found two files of different length. The files for: ", results1[i], " in the theme: ",
+                          sub_folder, ", do NOT match \n ")
     return ch_dict

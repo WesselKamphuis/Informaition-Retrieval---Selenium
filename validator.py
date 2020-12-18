@@ -1,8 +1,6 @@
 import pandas as pd
-from Validation.cohens_kappa import cohens_kappa
-from Validation.jaccard_and_kendall import jaccard_and_kendall
-import xlwt
-import openpyxl
+from Validation.Code.cohens_kappa import cohens_kappa
+from Validation.Code.jaccard_and_kendall import jaccard_and_kendall
 
 
 def main(version):
@@ -25,7 +23,7 @@ def main(version):
     print('kendall taus coefficient in table view: \n', kt_df, '\n')
     print('jaccard similarity score in table view: \n', jaccard_df, '\n')
 
-    excel_name = 'validation_metrics_' + version + '.xls'
+    excel_name = 'Validation/Output/validation_metrics_' + version + '.xls'
     with pd.ExcelWriter(excel_name) as writer:
         ch_df.to_excel(writer, sheet_name='Cohens_Kappa')
         kt_df.to_excel(writer, sheet_name='Kendall_Tau')
