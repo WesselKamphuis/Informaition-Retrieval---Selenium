@@ -31,6 +31,4 @@ def main(version):
 
 
 if __name__ == '__main__':
-    main('v2')
-    main('v3')
-    main('v4')
+    main('v5')

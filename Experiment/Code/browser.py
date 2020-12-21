@@ -40,7 +40,7 @@ def browse(driver, query):
 # the Main method
 # loads the driver and the input data
 def browser(query, directory):
-    filename = 'Experiment/Coordinates.xlsx'
+    filename = 'Experiment/Input/Coordinates.xlsx'
     book = load_coordinates(filename)
     tables = book_to_table(book)
 

@@ -2,6 +2,7 @@
 ## Authors: Simon Arends, Wessel Kamphuis, Romy Bosgoed
 
 ### Table of content
+0. [Installation](#installation-requirements)
 1. [Abstract](#abstract)
 2. [Introduction](#introduction)
 3. [Input](#input)
@@ -10,6 +11,9 @@
 6. [Validation](#validation)
 7. [Conclusion](#conclusion)
 
+### Installation requirements
+When wanting to use this project, one has to do 2 things. The first is to add the chromedriver for Selenium to their 
+Path, using environmental variables. Second, one has to install the packages stated in the [requirements file](Requirements.txt). 
 
 ### Abstract
 This project is related to an article that analyzed the potential effect of personalization, based on user’s location in
@@ -32,8 +36,37 @@ The next step is to validate the results. This is done using three metrics: Cohe
 Kendall_Tau. The meaning of these metrics can be found in [Validation](#validation)
 
 ### Input
-
+As an input we provide an [excel file](Experiment/Input/Coordinates.xlsx). 
+This file has a political party on each sheet. A sheet then consists of 5 columns; 
+Municipality, Percentage, Latitude, Longitude and Aggregate. This last column has the structure that can be used as 
+input for the geo locations of the driver.
+   
 ### Experimental setup
+For this we use the [browser file](Experiment/Code/browser.py), and we use the [experimentor file](experimentor.py) to 
+run it. Experimentor contains a dictionary of directory names and search queries in key, value pairs. The value is then
+modified into a query by adding 'standpunten' to the value. The key and value are then passed to the [browser file](Experiment/Code/browser.py).
+The key is the directory and the value is converted into a query.
+
+The [browser file](Experiment/Code/browser.py) has 4 main functions. 1. It loads the coordinates excel file, 2. it loads the 
+Selenium driver, 3. it uses a passed query in combination with the coordinates, which modified the driver, 4. and it s
+saves the results in a passed directory. 
+
+#### 1. Coordinates file
+The [coordinates excel file](Experiment/Input/Coordinates.xlsx), mentioned in the previous section, is convirted into a 
+pandas dataframe for easier processing. Where each sheet is also a dataframe. This is done with [the book_to_table defintion](Experiment/Code/browser.py).
+
+#### 2. Selenium driver
+For this experiment we work with selenium to automatically execute the queries. More specifically, we use the 
+chromedriver. For this to work, one has to add the ChromeDriver() to their path, since it is loaded from there.
+
+#### 3. Query search
+We use the queries from the [experimentor file](experimentor.py). These are passed to browser. First the Selenium driver 
+and the coordinates are loaded. Then for each query, we loop over all locations, from the different sheets. These coordinates
+are then set using a command for the ChromeDriver. A new instance of the chromedriver is launched for each location, after 
+which the cookies are deleted. We then go to www.google.com, enter the query, wait 2 seconds and then save the results
+
+#### 4. result saver
+After executing a query, we want to save the results
 
 ### Output
 

@@ -13,6 +13,7 @@ def jaccard_and_kendall(path):
     kt_dict = {}
     jacc_dict = {}
     for sub_folder in results:
+        print("subfolder: ", sub_folder)
         kt_dict[sub_folder] = {}
         jacc_dict[sub_folder] = {}
         theme = path + sub_folder
@@ -20,7 +21,7 @@ def jaccard_and_kendall(path):
             if file != '[Party - Municipality]':
                 f1_path = theme + '/Groenlinks - Nijmegen.txt'
                 f2_path = theme + '/' + file
-
+                print("file: ", file)
                 f1 = open(f1_path, 'r')
                 f2 = open(f2_path, 'r')
 
